@@ -138,6 +138,7 @@ def path_choices(allowed_paths: List[Path]) -> List[SlashCommandChoice]:
     :param allowed_paths: List of allowed Paths
     :return: List of slash command choices choices formatted for Discord
     """
+    allowed_paths.sort(key=lambda x: x.name)
     return [SlashCommandChoice(path.name, path.name) for path in allowed_paths]
 
 
