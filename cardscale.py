@@ -27,9 +27,11 @@ from dis_snek.models import (
 
 from cards import Card, Path, all_paths
 
+paths = all_paths()
+
 
 def find_card(card_name: str) -> Union[Tuple[Card, Path], Tuple[None, None]]:
-    for path in all_paths():
+    for path in paths:
         card = path.card_by_name(card_name)
         if card:
             return card, path
@@ -40,14 +42,14 @@ def path_by_name(valid_paths: List[Path], path_name: str) -> Path:
     return next((p for p in valid_paths if p.name == path_name), None)
 
 
-def build_links(raw_paths: List[Path]):
-    for path in raw_paths:
-        for card in path.cards:
-            if card.linked:
-                linked_to = [c for c in path.cards if card.linked.find(c.name) > -1]
-            else:
-                linked_to = [c for c in path.cards if (c.linked and c.linked.find(card.name) > -1)]
-            card.linked_to = linked_to if len(linked_to) > 0 else None
+# def build_links(raw_paths: List[Path]):
+#     for path in raw_paths:
+#         for card in path.cards:
+#             if card.linked:
+#                 linked_to = [c for c in path.cards if card.linked.find(c.name) > -1]
+#             else:
+#                 linked_to = [c for c in path.cards if (c.linked and c.linked.find(card.name) > -1)]
+#             card.linked_to = linked_to if len(linked_to) > 0 else None
 
 
 def card_url(card_name: str, path_name: str) -> str:
@@ -212,9 +214,13 @@ class CardView(object):
                 await msg.edit(content="Timed Out", components=rows)
                 break
             else:
+                start = timer()
                 button_ctx: ComponentContext = event.context
                 self.select(button_ctx.custom_id)
-                logging.debug(f"msg id [ {msg.id} ]: {button_ctx.author} clicked on: {button_ctx.custom_id}")
+                end = timer()
+                print(f"msg id [ {msg.id} ]: {button_ctx.author} interacted with [ {button_ctx.custom_id} ]. "
+                      f"Response time: [ {end - start}s ]")
+                # logging.debug(f"msg id [ {msg.id} ]: {button_ctx.author} clicked on: {button_ctx.custom_id}")
                 await button_ctx.edit_origin(embeds=self.embed(), components=self.components())
 
 
@@ -272,7 +278,7 @@ class TournamentPackView(object):
         return components
 
     def embeds(self) -> List[Embed]:
-        heirloom_embed = build_embed(path_by_name(all_paths(), 'Heirloom'), self._selected_heirloom)
+        heirloom_embed = build_embed(path_by_name(paths, 'Heirloom'), self._selected_heirloom)
 
         if isinstance(self._selected, Path):
             card_embed = build_embed(self._selected)
@@ -283,11 +289,9 @@ class TournamentPackView(object):
 
 
 class CardScale(Scale):
-    paths: List[Path]
 
     def __init__(self, client: Snake):
         self.client = client
-        self.paths = all_paths()
 
     @slash_command(name="path",
                    description="Display an entire path")
@@ -297,7 +301,7 @@ class CardScale(Scale):
                   required=True,
                   choices=path_choices([p for p in all_paths() if p.name != 'Heirloom']))
     async def path_image(self, ctx: InteractionContext, path_name: str, ephemeral: bool = False):
-        path = next((p for p in self.paths if p.name == path_name), None)
+        path = next((p for p in paths if p.name == path_name), None)
 
         embed = build_embed(path)
         rows = action_rows_from_path(path)
@@ -319,6 +323,7 @@ class CardScale(Scale):
                 await msg.edit(content="Timed Out", components=rows)
                 break
             else:
+                start = timer()
                 button_ctx: ComponentContext = event.context
                 logging.debug(f"msg id [ {msg.id} ]: {button_ctx.author} clicked on: {button_ctx.custom_id}")
 
@@ -329,6 +334,9 @@ class CardScale(Scale):
                     cmp_embed = build_embed(path, card)
 
                 rows = disable_all_but_id(rows, button_ctx.custom_id)
+                end = timer()
+                print(f"msg id [ {msg.id} ]: {button_ctx.author} interacted with [ {button_ctx.custom_id} ]. "
+                      f"Response time: [ {end - start}s ]")
                 await button_ctx.edit_origin(embeds=cmp_embed, components=rows)
 
     @slash_command(name="card",
@@ -359,7 +367,7 @@ class CardScale(Scale):
         :param card_name: The substring to match against
         """
 
-        cards = {card.name.lower(): card.name for path in self.paths for card in path.cards}
+        cards = {card.name.lower(): card.name for path in paths for card in path.cards}
 
         if len(card_name) <= 3:
             cutoff = 0
@@ -383,8 +391,8 @@ class CardScale(Scale):
                   description="Whether this should be hidden from other users. True by default.",
                   required=False)
     async def generate_paths(self, ctx: InteractionContext, hidden: bool = True):
-        heirlooms = random.sample(path_by_name(self.paths, 'Heirloom').cards, 3)
-        randpaths = random.sample([p for p in self.paths if p.name != 'Heirloom'], 3)
+        heirlooms = random.sample(path_by_name(paths, 'Heirloom').cards, 3)
+        randpaths = random.sample([p for p in paths if p.name != 'Heirloom'], 3)
 
         pack_view = TournamentPackView(heirlooms, randpaths)
         msg = await ctx.send(embeds=pack_view.embeds(), components=pack_view.components(), ephemeral=hidden)
@@ -405,18 +413,20 @@ class CardScale(Scale):
             else:
                 start = timer()
                 button_ctx: ComponentContext = event.context
-                logging.debug(f"msg id [ {msg.id} ]: {button_ctx.author} clicked on: {button_ctx.custom_id}")
+                # logging.debug(f"msg id [ {msg.id} ]: {button_ctx.author} clicked on: {button_ctx.custom_id}")
 
                 pack_view.select(button_ctx.custom_id)
                 end = timer()
-                logging.debug(f"msg id [ {msg.id} ]: {button_ctx.author} interacted with [ {button_ctx.custom_id} ]. "
-                              f"Response time: [ {end - start} ]s")
+                print(f"msg id [ {msg.id} ]: {button_ctx.author} interacted with [ {button_ctx.custom_id} ]. "
+                      f"Response time: [ {end - start}s ]")
+                # logging.debug(f"msg id [ {msg.id} ]: {button_ctx.author} interacted with [ {button_ctx.custom_id} ]. "
+                #               f"Response time: [ {end - start}s ]")
                 await button_ctx.edit_origin(embeds=pack_view.embeds(), components=pack_view.components())
 
     @slash_command(name="random_heirloom",
                    description="Displays a random heirloom")
     async def random_heirloom(self, ctx: InteractionContext):
-        heirlooms = next(p for p in self.paths if p.name == "Heirloom")
+        heirlooms = next(p for p in paths if p.name == "Heirloom")
         r_heirloom = random.choice(heirlooms.cards)
 
         cardview = CardView(r_heirloom.name)
@@ -429,7 +439,7 @@ class CardScale(Scale):
     @slash_command(name="random_card",
                    description="Displays a random (non-heirloom) card")
     async def random_pathcard(self, ctx: InteractionContext):
-        r_cardname = random.choice([card.name for path in self.paths if path.name != "Heirloom" for card in path.cards])
+        r_cardname = random.choice([card.name for path in paths if path.name != "Heirloom" for card in path.cards])
 
         cardview = CardView(r_cardname)
 
