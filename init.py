@@ -8,7 +8,7 @@ from dis_snek.models import slash_command, InteractionContext, Button, ButtonSty
 snek = Snake(
     sync_interactions=True,  # sync application commands with discord
     delete_unused_application_cmds=False,  # Delete commands that arent listed here
-    debug_scope=os.environ.get('test_scope', None)  # Override the commands scope, and only create them in this guild
+    debug_scope=os.environ.get('test_scope', False)  # Override the commands scope, and only create them in this guild
 )
 
 logging.basicConfig(filename='app.log', level=logging.DEBUG, filemode='w',
