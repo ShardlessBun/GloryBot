@@ -1,0 +1,81 @@
+path: Mariner
+colors: 000257 - 4FB1A8
+resources: SSF
+extras: >
+  \newcommand{\drown}[1]{\textcolor[HTML]{3B8594}{\textbf{#1}}}
+
+
+cards:
+- Whaler's Hook:
+    cost: A
+    text: >
+        \attack{1}
+
+        If Whaler's Hook hits, banish a non-innate card from play.
+    upgrade cost: 4
+    upgrade: >
+        +1 attack power.
+
+
+- Salt-Captain's Compass:
+    cost:
+    types: innate, permanent
+    text: >
+        Recall Sunken Temple and Pirate's Cove. You can only play one harbor each match.
+
+        When you banish an opponent's card, \drown{drown} it.
+
+
+- Sunken Temple:
+    cost: F
+    types: permanent
+    linked: Salt-Captain's Compass
+    linked type: Harbor
+    text: >
+        Your opponent chooses one of their cards from hand or play. Banish it.
+
+        When the match ends, score one point for each \drown{drowned} card beyond the first.
+
+
+- Pirate's Cove:
+    cost: F
+    types: permanent
+    linked: Salt-Captain's Compass
+    linked type: Harbor
+    text: >
+        Put \mana{XX} on me. Spend these only to play \drown{drowned} cards.
+
+        \drown{Drowned} cards are kept in your in your hand and can be played as your own.
+
+
+- Trawling Net:
+    cost: S
+    text: >
+        \block
+
+        When Trawling Net blocks a card, banish that card.
+    purchase: 0
+    upgrade cost: 3
+    upgrade: >
+        When Trawling Net blocks, it blocks all attacks instead of just one.
+
+
+- Boarding Party:
+    cost: SAA
+    text: >
+        \attack{3}
+
+        Name a non-innate card. Banish all cards with that name from your opponent's hand and from play.
+
+        Play Pirate's Cove if able.
+    purchase: 4
+
+
+- Abyssal Offering:
+    cost:
+    types: oneshot
+    text: >
+        For each two points you've scored this match, your opponent chooses one of their cards from hand or play. Banish those cards.
+
+        Play Sunken Temple if able.
+    purchase: 4

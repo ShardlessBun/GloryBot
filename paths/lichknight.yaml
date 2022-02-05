@@ -1,0 +1,57 @@
+path: Lich Knight
+colors: 820000 - 88ADDB
+resources: SSW
+
+
+cards:
+- Culling Scythe:
+    cost: SA
+    text: >
+        \attack{2}
+
+        If I hit, recall and play \upgrade{a Skeletal Minion}{two Skeletal Minions}.
+    upgrade cost: 4
+
+- Skeletal Minion:
+    cost:
+    linked: >
+        {Culling Scythe} or Shambling Ranks
+    path card name: Skeletal Minion\ \ (3 copies)
+    types: oneshot
+    text:
+        \sequence
+        [No effect.]
+        [\attack{1}]
+
+- Soulless Steel:
+    cost: A
+    text: >
+        Your opponent can't score more than one point this turn. \textit{(If they would score, they score only one point. If they have already scored points this turn, they cannot score again.)}
+
+- Shambling Ranks:
+    cost: W
+    types: permanent
+    text: >
+        At the end of each turn, if a player scored points this turn, recall and play a Skeletal Minion.
+    purchase: 0
+    upgrade cost: 5
+    upgrade: >
+        Your Skeletal Minions get +1 attack power.
+
+- Call from the Grave:
+    cost:
+    types: oneshot
+    purchase: 3
+    text: >
+        Choose one of your banished Oneshot cards and play it alongside me as an additional action. \textit{(You still pay costs.)}
+
+- Throne of Fallen Souls:
+    cost:
+    purchase: 5
+    text: >
+        I am not used during matches.
+
+        When you learn me, restore a lost heart.
+
+        Whenever another player loses all their hearts and is eliminated, learn one of their starter or advanced cards, spending skill points if required.
+        \textit{(It is yours for the tournament and can be upgraded later. This does not count as your purchase for the round.)}

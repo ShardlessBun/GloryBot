@@ -1,0 +1,62 @@
+path: Hammer Priest
+colors: 33CCFF - FECD01
+resources: SSW
+
+
+cards:
+- Smiting Hammer:
+    cost: SW
+    text: >
+        \attack{3}
+    upgrade cost: 6
+    upgrade: >
+        Banish any non-innate card from play.
+    # big art: true
+
+
+- Shield of Faith:
+    cost: S
+    text: >
+        \sequence
+        [\block]
+        [All points you score are doubled.]
+    upgrade cost: 3
+    upgrade: >
+        When Shield of Fate blocks, it block all attacks instead of just one.
+
+
+- Divine Intervention:
+    cost:
+    types: oneshot
+    text: >
+        You can't play me until you've scored at least four points.
+
+        Score one point.
+
+        Gain \mana{SW}.
+
+        \block
+    purchase: 0
+    upgrade cost: 5
+    upgrade: >
+        For the rest of the match, your attacks get +2 attack power.
+
+
+- Desperate Prayer:
+    cost:
+    types: oneshot
+    text: >
+        When you are choosing cards to keep in your hand at the start of the match, you may reveal me and keep me as an extra card.
+
+        Score one point.
+    purchase: 3
+
+
+- Righteous Conviction:
+    cost:
+    types: innate, permanent
+    text: >
+        Gain \mana{X}.
+
+        While your opponent has more points than you, they can't block an attack unless they pay \mana{A}.
+    purchase: 6

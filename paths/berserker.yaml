@@ -1,0 +1,58 @@
+path: Berserker
+colors: 000000 - C8000F
+resources: SSS
+
+
+cards:
+- Bloodthirsty Axe:
+    cost: SA
+    text: >
+      \attack{2}
+
+      I get +2 attack power if you are being attacked.
+
+
+- Battle Rage:
+    cost:
+    types: permanent
+    text: >
+      At the start of each turn, if your opponent has scored at least three points you may play an additional action this turn.
+    upgrade cost: 6
+    upgrade: >
+      Gains: \textit{\textsb{Innate} \linebreak(Play before the match starts.)}
+
+
+- Rite of Scars:
+    cost:
+    text: >
+      Gain \mana{XX}.
+
+      Attack yourself with an attack power of 2.
+
+      \textit{(You are both attacking and being attacked. If you don't block, your opponent scores the points.)}
+    purchase: 0
+    upgrade cost: 6
+    upgrade: >
+      +1 attack power; +1 \mana{X} gained.
+
+
+- Pillage:
+    cost:
+    types: oneshot
+    text: >
+      Banish a card your opponent played this turn.
+    purchase: 2
+    upgrade cost: 3
+    upgrade: >
+      ... and another one of your opponent's cards of their choice.
+
+- Retribution:
+    cost: SAA
+    text: >
+      \attack{2}
+
+      I get +1 attack power for each two points your opponent has scored this match.
+
+      I can't be blocked unless your \upgrade{opponent pays \mana{A}}{opponent pays \mana{AA}}.
+    purchase: 4
+    upgrade cost: 4

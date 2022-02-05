@@ -1,0 +1,79 @@
+path: Druid
+colors: 4E9B0F - FF6D00
+resources: SWW
+
+
+cards:
+- Bind in Thorns:
+    cost: WA
+    text: >
+        \attack{1}
+
+        \block
+    upgrade cost: 4
+    upgrade: >
+        +1 attack power.
+
+
+- Lifebloom:
+    cost:
+    text: >
+        \sequence
+        [Gain \mana{X}.]
+        [Gain \mana{X}.]
+    upgrade cost: 6
+    upgrade: >
+        Gain \mana{XX} each turn instead.
+
+
+- Wildshape:
+    cost:
+    text: >
+        Choose, reveal and recall an Animal Form.
+    purchase: 0
+    upgrade cost: 4
+    upgrade: >
+        Gains: \textit{\textsb{Innate} \linebreak(Play before the match starts.)}
+
+
+- Tooth and Claw:
+    cost: S
+    linked: Wildshape
+    linked type: Animal Form
+    types: oneshot
+    text: >
+        \attack{3}
+
+        I can't be blocked unless your opponent pays \mana{A}.
+
+
+- Take Wing:
+    cost: S
+    linked: Wildshape
+    linked type: Animal Form
+    types: oneshot
+    text: >
+        \sequence
+        [\block]
+        [\block]
+
+
+- Fierce Seedling:
+    cost: A
+    types: permanent
+    text: >
+        Each turn, I grow. Then, if I have grown at least three times:
+
+        \attack{1}
+    purchase: 3
+
+- Sheltering Ancient:
+    cost:
+    types: innate, permanent
+    text: >
+        When you are attacked, banish me to:
+
+        \block
+
+        At the end of the second turn of the match, banish me.
+    purchase: 5

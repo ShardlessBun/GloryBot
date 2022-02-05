@@ -1,0 +1,76 @@
+path: Legionnaire
+colors: FFA500 - AF0301
+resources: SSF
+
+
+cards:
+- Balanced Blade:
+    cost: AA
+    text: >
+        \attack{2}
+
+        Recall Parry.
+    upgrade cost: 4
+    upgrade: >
+        Costs \mana{A} instead of \mana{AA}.
+
+
+- Parry:
+    cost: A
+    linked: Balanced Blade
+    types: oneshot
+    text: >
+        I cost one resource less if you played Balanced Blade last turn.
+
+        \block
+
+
+- Arrow Volley:
+    cost: SF
+    text: >
+        Repeat the following twice:
+        \attack{1}
+
+        \textit{(One block can only stop one attack.)}
+    upgrade cost: 6
+    upgrade: >
+        Attacks three times instead of two.
+
+
+- Decisive Strike:
+    cost: SAA
+    text: >
+        \attack{3}
+
+        I cost one resource less for each two points you've scored this match.
+        \textit{(\mana{A} is removed before \mana{S}.)}
+    purchase: 0
+    upgrade cost: 4
+    upgrade: >
+        +1 attack power.
+
+
+- Battle Tactics:
+    cost: F
+    types: innate, permanent
+    text: >
+        Choose a strategy:
+
+        \textit{Skirmish} -- You may play an additional action on the \upgrade{second}{second and fourth} turn.
+
+        \textit{Ambush} -- The first time you attack, give an attack \upgrade{+2}{+4} attack power.
+
+        \textit{Besiege} -- Your opponent pays \upgrade{\mana{A}}{\mana{AA}}.
+    purchase: 3
+    upgrade cost: 4
+
+
+- Shield Wall:
+    cost: S
+    types: permanent
+    text: >
+        First turn:
+        \block
+
+        Each turn, if you are attacking, block an attack with less attack power than yours.
+    purchase: 5

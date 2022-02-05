@@ -1,0 +1,67 @@
+path: Fireheart
+colors: F44B02 - F9028A
+resources: WWW
+extras: >
+  \newcommand{\burn}[1]{\textcolor[HTML]{F22643}{\textbf{#1}}}
+
+
+cards:
+- Insatiable Flame:
+    cost: W
+    text: >
+        \attack{1}
+
+        I \burn{burn} your opponent when I hit. \textit{(This can help you set them ablaze)}
+
+
+- Set Ablaze:
+    cost: WWAAA
+    types: oneshot
+    text: >
+        I cost no resources once your opponent has been \burn{burned} twice.
+
+        I can't be blocked.
+
+        \attack{4}
+    upgrade cost: 7
+    upgrade: >
+        Only costs \mana{WWA} to play.
+
+
+- Inferno Circle:
+    cost:
+    text: >
+        \sequence
+        [If your opponent attacked this turn, I \burn{burn} them.]
+        [If your opponent attacked this turn, I \burn{burn} them.]
+    purchase: 0
+    upgrade cost: 4
+    upgrade: >
+        Stays in play for a third turn; repeats the same effect.
+
+
+- Kindled Flame:
+    cost:
+    types: innate, permanent
+    text: >
+        When your opponent is \burn{burned} for \upgrade{the third time}{the second time} play Set Ablaze immediately as a special action. If it is forgotten, recall it first.
+    purchase: 3
+    upgrade cost: 3
+
+
+- Pyre Offering:
+    cost:
+    types: oneshot
+    text: >
+        \sequence
+        [Banish a non-Fireheart card from your hand to recall Consumed by Flame.]
+        [You may play an additional action.]
+
+    purchase: 5
+
+
+- Consumed by Flame:
+    cost:
+    linked: Pyre Offering
+    text: >
+        Consumed by Flame is a copy of the card that was banished by Pyre Offering, except that it \burn{burns} your opponent when it hits and when it blocks their attacks.

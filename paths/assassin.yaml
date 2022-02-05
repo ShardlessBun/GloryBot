@@ -1,0 +1,75 @@
+path: Assassin
+colors: 222222 - CD008C
+resources: FFF
+
+
+cards:
+- Backstab:
+    cost: F
+    text: >
+        If your opponent isn't attacking:
+
+        \attack{3}
+    upgrade cost: 4
+    upgrade: >
+        +2 attack power.
+
+- Shadowstep:
+    cost:
+    text: >
+        \block
+
+        Banish me unless you pay \mana{F}.
+
+
+- Trap Setting:
+    cost: F
+    text: >
+        Secretly choose a Trap and put it into play face down.
+        You can turn that card face up to play it as a special action any time after this turn ends.
+    purchase: 0
+
+
+- Poisoned Dagger:
+    cost:
+    linked: Trap Setting
+    linked type: Trap
+    text: >
+        If you hit with an attack this turn, I become permanent and at the start of each turn, you score one point. Otherwise, banish me.
+
+
+- Smoke Shroud:
+    cost:
+    linked: Trap Setting
+    linked type: Trap
+    types: oneshot
+    text: >
+        If your opponent didn't attack last turn, they can't score points this turn.
+
+
+- Feign Defeat:
+    cost:
+    linked: Trap Setting
+    linked type: Trap
+    types: oneshot
+    text: >
+        If your opponent has more points than you, they can't block this turn.
+
+
+- Always More Knives:
+    cost: FAA
+    text: >
+        \sequence
+        [\attack{3}]
+        [\attack{1}]
+    purchase: 0
+    upgrade cost: 4
+    upgrade: >
+        Costs \mana{FA} instead of \mana{FAA}.
+
+- Hidden in Plain Sight:
+    cost:
+    types: innate, permanent
+    text: >
+        After the first turn of the match, but before the second, there is a secret turn. Your opponent and their cards do not participate in this turn, and no points can be scored.
+    purchase: 5

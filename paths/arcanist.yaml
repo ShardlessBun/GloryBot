@@ -1,0 +1,76 @@
+path: Arcanist
+colors: E100FF - 5300EF
+resources: FWW
+
+
+cards:
+- Arcane Research:
+    cost: F
+    text: >
+        Choose \upgrade{two random advanced}{one random forbidden magic and one random advanced card} \upgrade{cards}{} you have not yet learned and recall them. If you recall an innate card, play it immediately.
+    upgrade cost: 5
+
+
+- Forcefield:
+    cost: W
+    text: >
+        \block
+
+        For the rest of the match, Forcefield costs no resources.
+
+
+- Meteor Invocation:
+    cost: WA
+    text: >
+        \sequence
+        [No effect.]
+        [\attack{4}]
+    purchase: 2
+    upgrade cost: 5
+    upgrade: >
+        +2 attack power.
+
+
+- Shrinking Ray:
+    cost: WA
+    types: oneshot
+    text: >
+        Your opponent pays \mana{AA} if able, or \mana{A} if that's all they have. They must undo an action they played this turn if doing so would make them more able to pay. \textit{(Undone actions are recalled and refunded and have no effect.)}
+    purchase: 5
+
+
+- Spellweaving:
+    cost:
+    types: innate, permanent
+    text: >
+        Reveal an Arcanist card and a non-Arcanist card from your hand.
+
+        For the rest of the match, when you play one of those cards, play the other as a special action if able.
+    purchase: 8
+
+
+- All-Consuming Void:
+    cost: A
+    linked: an upgraded {Arcane Research}
+    linked type: Forbidden Magic
+    text: >
+        At end of turn, end the match. \textit{(The player with more points wins)}
+
+
+- True Reincarnation:
+    cost:
+    linked: an upgraded {Arcane Research}
+    linked type: Forbidden Magic
+    types: oneshot
+    text: >
+        If your opponent would score points this turn, instead they score no points and your resources are restored to your starting resources.
+
+
+- Wake the Old Gods:
+    cost: AAA
+    linked: an upgraded {Arcane Research}
+    linked type: Forbidden Magic
+    text: >
+        \sequence
+        [\attack{4}]
+        [\attack{4}]
