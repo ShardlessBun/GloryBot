@@ -1,3 +1,3 @@
 strictyaml
 jinja2
-dis-snek=5.0.0
+dis_snek==5.0.0
