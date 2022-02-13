@@ -1,6 +1,6 @@
 strictyaml~=1.6.1
 jinja2
-git@github.com:Discord-Snake-Pit/Dis-Snek.git+dev
+git+https://github.com/Discord-Snake-Pit/Dis-Snek@dev
 sqlalchemy
 aiopg
 aiopg[sa]
